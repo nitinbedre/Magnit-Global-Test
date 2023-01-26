@@ -3,79 +3,87 @@
         <div class="text-center">
             <h2> Magnit Feedback Form..</h2>
         </div>
-        <div *ngIf="questionId == 0">
-            <div class="questions">
-                <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
+        <div *ngIf="!submitted">
+            <div *ngIf="questionId == 0">
+                <div class="questions">
+                    <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
+                </div>
+                <div class="answer">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="YES" [(ngModel)] = "questions[questionId].answer">
+                        <label class="form-check-label" for="radio1"><b>YES</b></label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="NO" [(ngModel)] = "questions[questionId].answer">
+                        <label class="form-check-label" for="radio2"><b>NO</b></label>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="answer">
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="YES" [(ngModel)] = "questions[questionId].answer">
-                    <label class="form-check-label" for="radio1"><b>YES</b></label>
-                  </div>
-                  <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="NO" [(ngModel)] = "questions[questionId].answer">
-                    <label class="form-check-label" for="radio2"><b>NO</b></label>
-                  </div>
-                  
+            <div *ngIf="questionId == 1">
+                <div class="questions">
+                    <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
+                </div>
+                <div class="answer">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="YES" [(ngModel)] = "questions[questionId].answer">YES
+                        <label class="form-check-label" for="radio1"></label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="NO" [(ngModel)] = "questions[questionId].answer">NO
+                        <label class="form-check-label" for="radio2"></label>
+                    </div>
+                    
+                </div>
+            </div>
+            <div *ngIf="questionId == 2">
+                <div class="questions">
+                    <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
+                </div>
+                <div class="answer">
+                    <textarea [(ngModel)]="questions[2].answer" style="width: 100%; max-width: 100%; height: 200px;" placeholder="Describe our culture in fewer than 20 words" > </textarea> 
+                </div>
+            </div>
+            <div *ngIf="questionId == 3">
+                <div class="questions">
+                    <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
+                </div>
+                <div class="answer">
+                    <select class="form-select" aria-label="Default select example" [(ngModel)]="questions[3].answer">
+                        <option value="NEVER">NEVER</option>
+                        <option value="ALWAYS">ALWAYS</option>
+                        <option value="RARELY">RARELY</option>
+                    </select>
+                    
+                </div>
+            </div>
+            <div *ngIf="questionId == 4">
+                <div class="questions">
+                    <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
+                </div>
+                <div class="answer">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="radio1" name="optradio" value="YES" [(ngModel)] = "questions[questionId].answer">YES
+                        <label class="form-check-label" for="radio1"></label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="radio2" name="optradio" value="NO" [(ngModel)] = "questions[questionId].answer">NO
+                        <label class="form-check-label" for="radio2"></label>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="prev-next">
+                <button type="button" class="btn btn-primary btn-lg float-left" (click)="prevQuestion()" [disabled]="this.questionId == 0">PREV</button>
+                <button type="button" class="btn btn-primary btn-lg float-right" (click)="nextQuestion()" *ngIf="this.questionId != 4">NEXT</button>
+                <button type="button" class="btn btn-danger btn-lg float-right" (click)="submit()" *ngIf="this.questionId == 4">SUBMIT</button>
             </div>
         </div>
-        <div *ngIf="questionId == 1">
-            <div class="questions">
-                <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
-            </div>
-            <div class="answer">
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="YES" [checked] = "questions[questionId].answer == 'YES'">YES
-                    <label class="form-check-label" for="radio1"></label>
-                  </div>
-                  <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="NO" [checked] = "questions[questionId].answer == 'NO'">NO
-                    <label class="form-check-label" for="radio2"></label>
-                  </div>
-                  
-            </div>
+        <div *ngIf="submitted" class="text-center summury">
+            <h3> Thanks for your valuable response..!  <br><img class="summury" src="assets/{{happiness}}.png" height="200px"></h3>
         </div>
-        <div *ngIf="questionId == 2">
-            <div class="questions">
-                <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
-            </div>
-            <div class="answer">
-                <textarea [(ngModel)]="questions[2].answer" style="width: 100%; max-width: 100%; height: 200px;" placeholder="Describe our culture in fewer than 20 words" > </textarea> 
-            </div>
-        </div>
-        <div *ngIf="questionId == 3">
-            <div class="questions">
-                <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
-            </div>
-            <div class="answer">
-                <select class="form-select" aria-label="Default select example" [(ngModel)]="questions[3].answer">
-                    <option value="NEVER">NEVER</option>
-                    <option value="ALWAYS">ALWAYS</option>
-                    <option value="RARELY">RARELY</option>
-                </select>
-                  
-            </div>
-        </div>
-        <div *ngIf="questionId == 4">
-            <div class="questions">
-                <h4> Q.{{questionId + 1}}) {{questions[questionId].question}} </h4>
-            </div>
-            <div class="answer">
-                <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio1" name="optradio" value="YES" [checked] = "questions[questionId].answer == 'YES'">YES
-                    <label class="form-check-label" for="radio1"></label>
-                  </div>
-                  <div class="form-check">
-                    <input type="radio" class="form-check-input" id="radio2" name="optradio" value="NO" [checked] = "questions[questionId].answer == 'NO'">NO
-                    <label class="form-check-label" for="radio2"></label>
-                  </div>
-                  
-            </div>
-        </div>
-        <div class="prev-next">
-            <button type="button" class="btn btn-primary btn-lg float-left" (click)="prevQuestion()" [disabled]="this.questionId == 0">PREV</button>
-            <button type="button" class="btn btn-primary btn-lg float-right" (click)="nextQuestion()" *ngIf="this.questionId != 4">NEXT</button>
-            <button type="button" class="btn btn-danger btn-lg float-right" (click)="submit()" *ngIf="this.questionId == 4">SUBMIT</button>
+        <div *ngIf="submitted" class="text-center summury">
+            <h3> Overall feedback is ..!  <br><img class="summury" src="assets/{{happiness}}.png" height="200px"></h3>
         </div>
     </div>
 </div>

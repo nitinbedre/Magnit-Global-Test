@@ -9,6 +9,9 @@ import { AppService } from './app.service';
 export class AppComponent {
   title = 'Magnit';
   questionId: number = 0;
+  submitted: boolean = false;
+  happiness: number = 1;
+  overallHappiness: number = 0;
   questions: any = [
     {
       question: "Are you proud to be a member of your team?",
@@ -19,7 +22,7 @@ export class AppComponent {
       answer: "NO"
     },
     {
-      question: "Describe our culture in fewer than 20 words",
+      question: "Describe our culture in few words.",
       answer: ""
     },
     {
@@ -28,7 +31,7 @@ export class AppComponent {
     },
     {
       question: " Are you satisfied with your compensation and benefits?",
-      answer: ""
+      answer: "NO"
     }
 ];
 
@@ -45,25 +48,31 @@ export class AppComponent {
   }
 
   public submit() {
-    var happines = 0;
+    this.happiness = 0;
     if(this.questions[0].answer == "YES") {
-      happines++;
+      this.happiness++;
     }
     if(this.questions[1].answer == "YES") {
-      happines++;
+      this.happiness++;
     }
     if(this.questions[2].answer.length > 0) {
-      happines++;
+      this.happiness++;
     }
     if(this.questions[3].answer != "NEVER") {
-      happines++;
+      this.happiness++;
     }
     if(this.questions[4].answer == "YES") {
-      happines++;
+      this.happiness++;
     }
 
-    this.appService.saveHappines(happines).subscribe(((result: any) => {
+    if(this.happiness == 0) {
+      this.happiness = 1;
+    }
+
+    this.appService.saveHappines(this.happiness).subscribe((result: any) => {
       console.log("result");
+      this.submitted = true;
+      this.overallHappiness = result.happiness;
     });
   }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,10 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AppService {
-  url: string  = "http://localhost:4200"
+  url: string  = "http://localhost:8080"
   constructor(public http: HttpClient) { }
 
   saveHappines(happines: number): Observable<any> {
-    this.http.post(this.url+"/api/save", happines);
+    let params = new HttpParams();
+    
+    return this.http.get(this.url+"/api/save", { params:  { "happiness": happines}},);
   }
 }
