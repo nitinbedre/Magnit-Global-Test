@@ -1,0 +1,42 @@
+.outline {
+    background-color: antiquewhite;
+    border-radius: 20px;
+    padding: 20px;
+    height: 100%;
+}
+
+.card {
+    background-color: #d1d1d1;
+    padding: 20px;
+    height: 100%
+}
+
+.questions {
+    padding: 30px;
+}
+
+.answer {
+    padding: 30px;
+    height: 60%;
+}
+
+.prev-next {
+    padding: 20px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+ }
+
+ .float-right {
+    float: right;
+ }
+
+ .float-left {
+    float: left;
+ }
+
+ .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+    margin-left: 16px;
+  }
